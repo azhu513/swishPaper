@@ -4,6 +4,8 @@
   simulation
 * `samp_size.R` - used for the one batch bulk RNA-seq with varying
   sample size
+* `highrep` - directory with scripts used in the high replicate bulk
+  RNA-seq analysis
 * `scrna` - directory with scripts used in the mouse neurons scRNA-seq
 * `splatter-polyester` - directory with scripts used in the
   splatter-polyester scRNA-seq simulation
