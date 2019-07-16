@@ -1,0 +1,24 @@
+DATASETS = ["01","02","03","04","05",
+            "06","07","08","09","10",
+            "11","12","13","14","15",
+            "16","17","18","19","20",
+            "21","22","23","24","25",
+            "26","27","28","29","30",
+            "31","32","33","34","35",
+            "36","37","38","39","40"]
+
+SALMON = "/proj/milovelab/bin/salmon-0.11.3-linux_x86_64/bin/salmon"
+
+rule all:
+  input: expand("quants/{dataset}/quant.sf", dataset=DATASETS)
+
+rule salmon_quant:
+    input:
+        r = "out/shuffle_{sample}.fa.gz",
+        index = "Homo_sapiens.GRCh38.cdna.all"
+    output:
+        "quants/{sample}/quant.sf"
+    params:
+        dir = "quants/{sample}"
+    shell:
+        "{SALMON} quant -i {input.index} -l A -p 6 --numGibbsSamples 20 --noLengthCorrection -o {params.dir} -r {input.r}"
